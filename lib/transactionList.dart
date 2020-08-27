@@ -15,14 +15,14 @@ class TransactionList extends StatelessWidget {
       body: Container(
         child: transaction == null || transaction.isEmpty
             ? Center(
-              child: Text(
+                child: Text(
                   'No Data Added',
                   style: TextStyle(
                     color: Colors.red,
                     fontSize: 30.0,
                   ),
                 ),
-            )
+              )
             : ListView.builder(
                 itemCount: transaction.length,
                 itemBuilder: (ctx, index) {
@@ -33,32 +33,28 @@ class TransactionList extends StatelessWidget {
                       horizontal: 5,
                     ),
                     child: ListTile(
-                      leading: CircleAvatar(
-                        radius: 30,
-                        child: Padding(
-                          padding: EdgeInsets.all(6),
-                          child: FittedBox(
-                            child: Column(
-                              children: <Widget>[
-                                Text(
-                                  '\$${transaction[index].title}',
-                                ),
-                                Text(
-                                  '${transaction[index].cost}',
-                                ),
-                                Text(
-                                  '${transaction[index].from}',
-                                ),
-                                Text(
-                                  '${transaction[index].to}',
-                                ),
-                                /*   Text(
-                                '${transaction[index].dateTime}',
-                              ),*/
-                              ],
-                            ),
+                      title: Text(
+                        '${transaction[index].title}',
+                      ),
+                      subtitle: Row(
+                        children: <Widget>[
+                          Text(
+                            "From: " '${transaction[index].from}',
                           ),
-                        ),
+                          Text(" - "),
+                          Text(
+                            "To: " '${transaction[index].to}',
+                          ),
+                        ],
+                      ),
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text("Cost"),
+                          Text(
+                            '${transaction[index].cost}',
+                          ),
+                        ],
                       ),
                     ),
                   );
